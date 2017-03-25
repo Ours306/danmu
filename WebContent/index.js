@@ -1,4 +1,4 @@
-String.prototype.format = function(args) {
+﻿String.prototype.format = function(args) {
 	var result = this;
 	if (arguments.length < 1) {
 		return result;
