@@ -1,4 +1,4 @@
-﻿String.prototype.format = function(args) {
+String.prototype.format = function(args) {
 	var result = this;
 	if (arguments.length < 1) {
 		return result;
@@ -141,7 +141,7 @@ var websocket = null;
 
 //判断当前浏览器是否支持WebSocket
 if('WebSocket' in window){
-	websocket = new WebSocket("ws://192.168.20.163:8080/DanMu/websocket");
+	websocket = new WebSocket("ws://120.25.236.233:8080/DanMu/websocket");
 }
 else{
 	alert('您的浏览器暂不支持websocket')
