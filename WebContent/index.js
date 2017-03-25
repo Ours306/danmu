@@ -77,7 +77,7 @@ $(function() {
 	}
 });
 
-function  run(info){
+function  run(info,color){
 //	var  info=$('input[name=info]').val();
 	(info == '' ) ?  info='请填写弹幕文字' : info=info;
 	var  href=$('input[name=href]').val();
@@ -110,7 +110,7 @@ function  run(info){
 			'close':true,
 			'speed':speed,
 			'bottom':bottom,
-			'color':'#'+$('input[name=color').val(),
+			'color':color,
 			// 'color':'#'+Math.floor(Math.random()*256).toString(10),
 			'old_ie_color':'#'+$('input[name=color').val()
 			// 'old_ie_color':'#' + colors[Math.round(Math.random()*3)]
@@ -175,8 +175,9 @@ window.onbeforeunload = function(){
 //将消息显示在网页上
 function setMessageInnerHTML(innerHTML){
 //	document.getElementById('message').innerHTML += innerHTML + '<br/>';
-	run(innerHTML);
-	
+	var json = JSON.parse(innerHTML);
+	run(json.message,json.color);
+
 }
 
 //关闭连接
@@ -187,6 +188,7 @@ function closeWebSocket(){
 //发送消息
 function send(){
 	var message = document.getElementById('text').value;
-	var color = document.getElementById('color').value;
-	websocket.send(message+"&&"+color);
+	var color = "#"+document.getElementById('color11').value;
+	var json = '{"message":"' + message+'","color":"'+color+'"}';
+	websocket.send(json);
 }
