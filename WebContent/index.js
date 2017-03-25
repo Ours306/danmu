@@ -141,7 +141,8 @@ var websocket = null;
 
 //判断当前浏览器是否支持WebSocket
 if('WebSocket' in window){
-	websocket = new WebSocket("ws://120.25.236.233:8080/DanMu/websocket");
+	//120.25.236.233
+	websocket = new WebSocket("ws://192.168.56.1:8080/DanMu/websocket");
 }
 else{
 	alert('您的浏览器暂不支持websocket')
@@ -149,12 +150,12 @@ else{
 
 //连接发生错误的回调方法
 websocket.onerror = function(){
-	setMessageInnerHTML("连接错误");
+	console.log("连接错误");
 };
 
 //连接成功建立的回调方法
 websocket.onopen = function(event){
-	setMessageInnerHTML("连接成功");
+	console.log("连接成功");
 }
 
 //接收到消息的回调方法
@@ -164,7 +165,7 @@ websocket.onmessage = function(event){
 
 //连接关闭的回调方法
 websocket.onclose = function(){
-	setMessageInnerHTML("关闭");
+	console.log("关闭");
 }
 
 //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
