@@ -3,8 +3,8 @@ var app = angular.module("app",[]);
 app.controller("controller",["$rootScope","$scope","$timeout", function($rootScope,$scope,$timeout) {
 	
 	var issueTitle = angular.element("#issueTitle");
-	var title = "Õı·½£º´óÑ§ÉúÌ¸Áµ°®Àû´óÓÚ±× \n ·´·½£º´óÑ§ÉúÌ¸Áµ°®±×´óÓÚÀû";
-	$scope.title= "Õı·½£º´óÑ§ÉúÌ¸Áµ°®Àû´óÓÚ±×";
+	var title = "æ­£æ–¹ï¼šå¤§å­¦ç”Ÿè°ˆæ‹çˆ±åˆ©å¤§äºå¼Š \n åæ–¹ï¼šå¤§å­¦ç”Ÿè°ˆæ‹çˆ±å¼Šå¤§äºåˆ©";
+	$scope.title= "æ­£æ–¹ï¼šå¤§å­¦ç”Ÿè°ˆæ‹çˆ±åˆ©å¤§äºå¼Š";
 	var startIndex = 0;
 
 	$rootScope.state = 1;
