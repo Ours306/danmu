@@ -20,8 +20,8 @@
 ```shell
 ├── out                       // 输出文件
 ├── src                       // 后端
-│   ├── module                // 模块管理
-│   ├── user                  // 用户管理
+│   ├── controller            // 连接层
+│   ├── tools                 // 工具
 ├── web                       // 前端资源
 │   ├── display               // 页面、js
 │   ├── WEB-INF               // 安全目录
