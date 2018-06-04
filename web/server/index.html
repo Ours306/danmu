@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>客户端</title>
+</head>
+<body>
+	123
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+	  var socket = io('http://localhost');
+	  socket.emit('main', {isAdmin: true})
+	  socket.on('onlinenumber', function (data) {
+	    console.log(data);
+	    socket.emit('client', { my: 'data' });
+	  });
+	</script>
+</body>
+</html>
