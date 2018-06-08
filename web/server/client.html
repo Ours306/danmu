@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>客户端</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="msg">
+        <button onclick="sendMsg()">发送</button>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io('http://localhost');
+
+      socket.emit('toServer', { my: 'data' });//发送消息给服务端
+
+      socket.on('toClient', function (data) {//接收发送给用户端的消息
+        console.log(data);
+      });
+
+      function sendMsg() {
+        let msg = document.getElementById('msg').value;
+
+        socket.emit('fowardToAdmin', {msg})//发送消息给admin
+      }
+    </script>
+</body>
+</html>

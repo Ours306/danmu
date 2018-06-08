@@ -5,15 +5,20 @@
 	<title>客户端</title>
 </head>
 <body>
-	123
-	<script src="/socket.io/socket.io.js"></script>
-	<script>
-	  var socket = io('http://localhost');
-	  socket.emit('main', {isAdmin: true})
-	  socket.on('onlinenumber', function (data) {
-	    console.log(data);
-	    socket.emit('client', { my: 'data' });
-	  });
-	</script>
+<div id="onlineNum"></div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io('http://localhost');
+  socket.emit('beAdmin', {isAdmin: true})//向服务器认证为admin
+
+  socket.on('toAdmin', function(data) {//接收所有发送给admin的消息
+    console.log(data.msg);
+  });
+
+  socket.on('onlineNumber', data => {//接收在线人数
+    console.log('在线人数:' + data.number)
+	document.getElementById('onlineNum').innerText = data.number;
+  })
+</script>
 </body>
 </html>
