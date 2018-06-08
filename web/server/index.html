@@ -4,11 +4,31 @@
 	<meta charset="UTF-8">
 	<title>客户端</title>
 </head>
+<style>
+	html, body {
+		height:100vh;
+		margin:0px;
+	}
+
+	canvas {
+		position: absolute;
+		z-index: -1;
+	}
+</style>
 <body>
-<div id="onlineNum"></div>
+<!--<div id="onlineNum"></div>-->
+<canvas id="canvas"></canvas>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io('http://localhost');
+  (()=> {
+    let canvas = document.getElementById('canvas');
+	let domWidth = document.body.clientWidth;
+	let height = domWidth / 2;
+	canvas.setAttribute('width', domWidth);
+	canvas.setAttribute('height', height);
+  })()
+
+  let socket = io('http://localhost');
   socket.emit('beAdmin', {isAdmin: true})//向服务器认证为admin
 
   socket.on('toAdmin', function(data) {//接收所有发送给admin的消息
@@ -17,8 +37,19 @@
 
   socket.on('onlineNumber', data => {//接收在线人数
     console.log('在线人数:' + data.number)
-	document.getElementById('onlineNum').innerText = data.number;
-  })
+//	document.getElementById('onlineNum').innerText = data.number;
+  });
+
+  drawOnlineNumber(10);
+
+  function drawOnlineNumber(num) {
+    let dom = document.getElementById("canvas");
+    let ctx = dom.getContext('2d');
+	let width = dom.clientWidth;
+
+    ctx.font = "18px serif";
+    ctx.fillText('在线人数:' + num, width-144, 50);
+  }
 </script>
 </body>
 </html>
